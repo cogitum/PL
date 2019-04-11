@@ -42,17 +42,30 @@ class LinkedList:
         return find_list
 
     def delete(self, val, all=False):
-        node = self.find(val)
-        node_prev = self.head
-        if node_prev == node:
-            self.head = node.next
-            return True
-        while node_prev is not None:
-            if node_prev.next == node:
-                node_prev.next = node.next
-            node_prev = node_prev.next
+        if all == False:
+                node = self.find(val)
+                node_prev = self.head
+                if node_prev == node:
+                        self.head = node.next
+                        return True
+                while node_prev is not None:
+                    if node_prev.next == node:
+                        node_prev.next = node.next
+                    node_prev = node_prev.next
         
-         
+        else:
+                find_list = self.find_all(val)
+                for nod in find_list:
+                    node = self.find(val)
+                    node_prev = self.head
+                    if node_prev == node:
+                            self.head = node.next
+                            return True
+                    while node_prev is not None:
+                        if node_prev.next == node:
+                            node_prev.next = node.next
+                        node_prev = node_prev.next                    
+
 
 
     def clean(self):
@@ -82,3 +95,5 @@ class LinkedList:
             
             newNode.next = afterNode.next
             afterNode.next = newNode
+            
+
