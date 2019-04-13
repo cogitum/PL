@@ -4,6 +4,7 @@ class Node:
         self.value = v
         self.next = None
 
+
 class LinkedList:
 
     def __init__(self):
@@ -43,57 +44,69 @@ class LinkedList:
 
     def delete(self, val, all=False):
         if all == False:
-                node = self.find(val)
-                node_prev = self.head
-                if node_prev == node:
-                        self.head = node.next
-                        return True
-                while node_prev is not None:
-                    if node_prev.next == node:
-                        node_prev.next = node.next
-                    node_prev = node_prev.next
-        
-        else:
-                find_list = self.find_all(val)
-                for nod in find_list:
-                    node = self.find(val)
-                    node_prev = self.head
-                    if node_prev == node:
-                            self.head = node.next
-                            return True
-                    while node_prev is not None:
-                        if node_prev.next == node:
-                            node_prev.next = node.next
-                        node_prev = node_prev.next                    
+            node = self.find(val)
 
+            node_prev = self.head
+            if node_prev == node:
+                self.head = node.next
+                return True
+            while node_prev is not None:
+
+                if node_prev.next == node:
+                    node_prev.next = node.next
+                    if node == self.tail:
+                        self.tail = node_prev
+
+                node_prev = node_prev.next
+
+        else:
+            find_list = self.find_all(val)
+            for nod in find_list:
+                node = self.head
+                if node == nod:
+                    self.head = nod.next
+                if nod is not self.tail:
+                    while node is not None and node is not self.tail:
+
+
+                        if node.next == nod:
+                            node.next = nod.next
+                            #break
+
+                        node = node.next
+
+                else:
+
+                    while node is not None:
+
+
+                        if node.next == nod:
+                            node.next = None
+                            self.tail = node
+                            break
+                        node = node.next
 
 
     def clean(self):
         self.__init__()
-
 
     def len(self):
 
         node = self.head
         i = 0
         while node is not None:
-            i = i+1
+            i = i + 1
             node = node.next
 
+        return i
 
-        return i        
-
-
-
-            
     def insert(self, afterNode, newNode):
 
         if afterNode == None:
-            self.add_in_tail (newNode)
-            
-        else: 
-            
+            self.add_in_tail(newNode)
+
+        else:
+
             newNode.next = afterNode.next
             afterNode.next = newNode
             
-
