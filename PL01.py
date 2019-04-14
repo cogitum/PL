@@ -49,6 +49,8 @@ class LinkedList:
             node_prev = self.head
             if node_prev == node:
                 self.head = node.next
+                if self.tail == node:
+                    self.tail = None
                 return True
             while node_prev is not None:
 
@@ -67,25 +69,31 @@ class LinkedList:
                     self.head = nod.next
                 if nod is not self.tail:
                     while node is not None and node is not self.tail:
-
+                        # if self.tail not nod #node.next is not None:
 
                         if node.next == nod:
                             node.next = nod.next
                             #break
-
+                            iiii=777
                         node = node.next
 
                 else:
 
                     while node is not None:
+                        # if self.tail not nod #node.next is not None:
+                        if self.len() > 1:
 
-
-                        if node.next == nod:
-                            node.next = None
-                            self.tail = node
+                            if node.next == nod:
+                                node.next = None
+                                self.tail = node
+                                break
+                            node = node.next
+                        else:
+                            self.__init__()
                             break
-                        node = node.next
-
+                        #   self.tail = node
+                # node = self.find(val)
+                # node_prev = self.head
 
     def clean(self):
         self.__init__()
@@ -109,5 +117,3 @@ class LinkedList:
 
             newNode.next = afterNode.next
             afterNode.next = newNode
-            if afterNode == self.tail:
-                self.tail = newNode
