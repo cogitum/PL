@@ -45,21 +45,22 @@ class LinkedList:
     def delete(self, val, all=False):
         if all == False:
             node = self.find(val)
+            if node is not None:
 
-            node_prev = self.head
-            if node_prev == node:
-                self.head = node.next
-                if self.tail == node:
-                    self.tail = None
-                return True
-            while node_prev is not None:
+                node_prev = self.head
+                if  node_prev is not None and node_prev == node:
+                    self.head = node.next
+                    if self.tail == node:
+                        self.tail = None
+                    return True
+                while node_prev is not None:
 
-                if node_prev.next == node:
-                    node_prev.next = node.next
-                    if node == self.tail:
-                        self.tail = node_prev
+                    if node_prev.next == node:
+                        node_prev.next = node.next
+                        if node == self.tail:
+                            self.tail = node_prev
 
-                node_prev = node_prev.next
+                    node_prev = node_prev.next
 
         else:
             find_list = self.find_all(val)
