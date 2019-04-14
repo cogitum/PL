@@ -117,3 +117,6 @@ class LinkedList:
 
             newNode.next = afterNode.next
             afterNode.next = newNode
+            if afterNode == self.tail:
+                #self.tail = newNode
+                self.add_in_tail(newNode)
